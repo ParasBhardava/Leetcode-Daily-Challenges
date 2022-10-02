@@ -30,33 +30,33 @@ Explanation: The answer must be returned modulo 109 + 7.
 
 // Brutefore recursion : GIiving TLE
 
-class Solution
-{
-    const int MOD = 1e9 + 7;
+class Solution {
 
-public:
-    int numRollsToTarget(int n, int k, int target)
+private:
+    int solve(int idx, int target, int n, int k)
     {
-
-        vector<int> dp(target + 1, 0);
-        dp[0] = 1;
-
-        for (int idx = n - 1; idx >= 0; idx--)
+        if(idx == n)
         {
-            for (int tar = target; tar >= 0; tar--)
-            {
-                int ans = 0;
-                for (int i = 1; i <= k; i++)
-                {
-                    if (i <= tar)
-                        ans = (ans + dp[tar - i] % MOD) % MOD;
-                }
-
-                dp[tar] = ans;
-            }
+            if(target == 0)
+                return  1;
+            
+            return 0;
         }
-
-        return dp[target];
+        
+        int ans = 0;
+        for(int i = 1; i <= k; i++)
+        {
+            if(i <= target)
+                ans += solve(idx + 1, target - i, n, k);
+        }
+        
+        return ans;
+    }
+    
+public:
+    int numRollsToTarget(int n, int k, int target) {
+        return solve(0, target, n, k);   
+        
     }
 };
 
