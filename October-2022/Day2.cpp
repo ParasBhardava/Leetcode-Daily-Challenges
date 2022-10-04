@@ -223,6 +223,7 @@ public:
 /*-------------------------------------------------------------------------------------------------------------------*/
 
 /*
+Topic Tags : Dynemic Programming
 
 This problem is a variation of Coin Change 2(maximum number of ways to sum coins to the amount).
 Here the difference is that the total number of coins (dices) should be equal to n
